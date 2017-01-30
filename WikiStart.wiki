@@ -1,0 +1,37 @@
+= XML Utils =
+
+a library to ease the daily work on XML documents. This library is used by [bives:wiki BiVeS], [bives-core:wiki BiVeS-Core], [bives-cellml:wiki BiVeS-CellML], [bives-sbml:wiki BiVeS-SBML].
+
+== Features ==
+* pretty print, see HowTo#Printing
+* hash sums => identification
+* entails comparison, see bives:wiki
+
+== Usage ==
+* [http://bin.sems.uni-rostock.de/xmlutils/ download a binary]
+* include XMLUtils via Maven: ([http://mvn.sems.uni-rostock.de/releases/de/unirostock/sems/xmlutils/ find latest version id], import the [https://sems.uni-rostock.de/2013/10/maven-repository/ SEMS Maven repository])
+{{{
+#!xml
+<dependency>
+    <groupId>de.unirostock.sems</groupId>
+    <artifactId>xmlutils</artifactId>
+    <version>$VERSION</version>
+</dependency>
+}}}
+* learn HowTo use the library
+
+== Build ==
+
+* learn how to BuildXmlUtils
+
+== Dev ==
+* see the sources of this package: source:src/main/java/de/unirostock/sems/xmlutils 
+* see the [http://jdoc.sems.uni-rostock.de/xmlutils/ JavaDoc]
+* clone the sources:
+{{{
+#!sh
+git clone git://sems.uni-rostock.de/xmlutils
+}}}
+* find open bugs/issues and requests: {1}
+* file an issue or feature request: [/newticket]
+* discover latest changes: ChangeLog
