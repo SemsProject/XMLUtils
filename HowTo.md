@@ -1,38 +1,42 @@
 How To Use XML Utils 
 =====================
+
 Read An XML Document 
 ---------------------
-read an XML document and create a [TreeDocument](/src/main/java/de/unirostock/sems/xmlutils/ds//TreeDocument.java):
-```
-#!java
+
+read an XML document and create a [TreeDocument](/src/main/java/de/unirostock/sems/xmlutils/ds/TreeDocument.java):
+
+```java
 // provide a file
 File file = new File ("/path/to/doc");
 TreeDocument document = new TreeDocument (XmlTools.readDocument (file), file.toURI ());
 // or a string containing the XML code
 TreeDocument document = new TreeDocument (XmlTools.readDocument ("<xml> [...] </xml>"), null);
 ```
+
 The second parameter of the constructor is an URI, which will be used to resolve relative links to resources defined from within the document.
 
 Object Structure 
 -----------------
-### !TreeDocument 
-The main object you'll deal with is the [TreeDocument](/src/main/java/de/unirostock/sems/xmlutils/ds//TreeDocument.java), see [Java Doc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html)
 
-The !TreeDocument maintains several maps to easily access certain nodes in the tree. To get the keys and the corresponding nodes you can use the following methods
+### TreeDocument 
 
- Identifiers::
-   use [get/OccuringIds](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getOccurringIds()) to get all known ids in the document and [get/NodeById](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getNodeById(java.lang.String)) to get the node having a certain id. This is **only available if the ids of the document are unique**. Use [uniqueIds](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#uniqueIds()) to see whether the ids are unique.
+The main object you'll deal with is the `TreeDocument`, see [Java Doc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html)
+The `TreeDocument` maintains several maps to easily access certain nodes in the tree. To get the keys and the corresponding nodes you can use the following methods
+
+Identifiers:
+
+   * use [get/OccuringIds](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getOccurringIds()) to get all known ids in the document and [get/NodeById](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getNodeById(java.lang.String)) to get the node having a certain id. This is **only available if the ids of the document are unique**. Use [uniqueIds](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#uniqueIds()) to see whether the ids are unique.
  XPaths::
-   use [getOccurringXPaths](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getOccurringXPaths()) to get all known XPaths in the document and [get/NodeByPath](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getNodeByPath(java.lang.String)) to get the node having a certain XPath. Currently, we just support XPaths produced by us (it's a simple map). [Learn more about XPaths](https://en.wikipedia.org/wiki/XPath).
+   * use [getOccurringXPaths](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getOccurringXPaths()) to get all known XPaths in the document and [get/NodeByPath](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getNodeByPath(java.lang.String)) to get the node having a certain XPath. Currently, we just support XPaths produced by us (it's a simple map). [Learn more about XPaths](https://en.wikipedia.org/wiki/XPath).
  Tag Names::
-   use [get/OccurringTags](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getOccurringTags()) to get all known tag names in the document and [get/NodesByTag](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getNodesByTag(java.lang.String)) to get all nodes sharing a certain tag name.
+   * use [get/OccurringTags](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getOccurringTags()) to get all known tag names in the document and [get/NodesByTag](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getNodesByTag(java.lang.String)) to get all nodes sharing a certain tag name.
  Hashes::
-   use [get/OccurringHashes](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getOccurringHashes()) to get all known hashes in the document and [get/NodesByHash](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html//#getNodesByHash(java.lang.String)) to get all nodes sharing a certain hash. See [None](#//NodeHashes) for further informations on hashes.
+   * use [get/OccurringHashes](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getOccurringHashes()) to get all known hashes in the document and [get/NodesByHash](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#getNodesByHash(java.lang.String)) to get all nodes sharing a certain hash. See [None](#/NodeHashes) for further informations on hashes.
 
-Small example to see the usage of !TreeDocuments:
+Small example to see the usage of `TreeDocuments`:
 
-```
-#!java
+```java
 File file = new File ("/path/to/doc");
 TreeDocument document = new TreeDocument (XmlTools.readDocument (file), file.toURI ());
 System.out.println ("There are " + document.getNumNodes () + " nodes in this tree");
@@ -59,26 +63,29 @@ document2.equals (document); // same document -> true
 
 TreeDocument document3 = new TreeDocument (XmlTools.readDocument (new File ("/path/to/other/doc")), null);
 document3.equals (document); // different document -> most likely false
-
 ```
 
-Find the full example in /src/main/java/de/unirostock/sems/xmlutils/eg/TreeUsageExample.java 
+Find the full example in `/src/main/java/de/unirostock/sems/xmlutils/eg/TreeUsageExample.java`
+The objects housed in a tree document are of type [TreeNode](#treenode).
 
-The objects housed in a tree document are of type [None](#//TreeNode).
-
-### !TreeNode 
-A [TreeNode](/src/main/java/de/unirostock/sems/xmlutils/ds//TreeNode.java) ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeNode.html)) represents a node in a document. There are two different types of nodes, [TextNode](https://sems.uni-rostock.de/trac/xmlutils/browser/src/main/java/de/unirostock/sems/xmlutils/ds///TextNode.java)s ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TextNode.html)) represents textual content in documents and [DocumentNode](/src/main/java/de/unirostock/sems/xmlutils/ds//DocumentNode.java)s ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///DocumentNode.html)) represent XML nodes. These classes define some getters and setters, just have a look the the corresponding java doc. However, here are some more details for uncommon usecases:
+### TreeNode 
+A `TreeNode` ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeNode.html)) represents a node in a document.
+There are two different types of nodes, [TextNodes](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TextNode.html) represents textual content in documents and [DocumentNode](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/DocumentNode.html)) represent XML nodes. These classes define some getters and setters, just have a look the the corresponding java doc. However, here are some more details for uncommon usecases:
 
 #### Node Hashes 
-Each node in the document has two hash values unique for this node and it's subtree (note: not necessarily unique in the document). You can access this hash values using [get/OwnHash](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeNode.html//#getOwnHash()) and [get/SubTreeHash](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeNode.html//#getSubTreeHash()). The !OwnHash is an identifier for the !TreeNode itself, thus ```<node>` and `<node>` have the same !OwnHash, but the !OwnHash of `<node attr='value'>``` is different. In a similar fashion the !Sub/TreeHash identifies a subtree rooted in the corresponding node.
+Each node in the document has two hash values unique for this node and it's subtree (note: not necessarily unique in the document).
+You can access this hash values using [get/OwnHash](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeNode.html/#getOwnHash()) and [get/SubTreeHash](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeNode.html/#getSubTreeHash()).
+The `OwnHash` is an identifier for the `TreeNode` itself, thus `<node>` and `<node>` have the same `OwnHash`, but the `OwnHash` of `<node attr='value'>` is different.
+In a similar fashion the Sub/TreeHash identifies a subtree rooted in the corresponding node.
 
 #### Node Weights 
 The nodes in the document have weights depending on their subtrees. That is, weight ~ size subtree.
-The objects that computes the weight of a node can be defined when creating the tree document (see [extra constructor](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds///TreeDocument.html/#/TreeDocument(org.w3c.dom.Document,%20de.unirostock.sems.xmlutils.alg.Weighter,%20java.net.URI))). It needs to extend the [Weighter](/src/main/java/de/unirostock/sems/xmlutils/alg/Weighter.java) class ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/alg/Weighter.html)) and defaults to the [SemsWeighter](/src/main/java/de/unirostock/sems/xmlutils/alg//SemsWeighter.java) ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/alg///SemsWeighter.html)).
+The objects that computes the weight of a node can be defined when creating the tree document (see [extra constructor](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/ds/TreeDocument.html/#/TreeDocument(org.w3c.dom.Document,%20de.unirostock.sems.xmlutils.alg.Weighter,%20java.net.URI))).
+It needs to extend the [Weighter class](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/alg/Weighter.html) and defaults to the [SemsWeighter](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/alg/SemsWeighter.html).
 
 See a small example to get an idea of nodes and their usage:
-```
-#!java
+
+```java
 // get root node
 DocumentNode root = document.getRoot ();
 // root's children
@@ -125,23 +132,26 @@ System.out.println ("New path to the message node: " + message.getXPath ());
 System.out.println ("Weight of the message node: " + message.getWeight ());
 System.out.println ("Signature of the subtree rooted in the message node: " + message.getSubTreeHash ());
 ```
+
 Find the full example in /src/main/java/de/unirostock/sems/xmlutils/eg/NodeUsageExample.java 
 
 Extra 
 ------
-### Printing 
-The class [DocumentTools](/src/main/java/de/unirostock/sems/xmlutils/tools//DocumentTools.java) ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools///DocumentTools.html)) provides some static functions to print (parts of) document. Just pass the node rooting the tree to print as an argument (e.g. ```document.getRoot ()` to print the whole `document```). Use [print/SubDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools///DocumentTools.html//#printSubDoc(de.unirostock.sems.xmlutils.ds.//DocumentNode)) to print a tree and [print/PrettySubDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools///DocumentTools.html//#printPrettySubDoc(de.unirostock.sems.xmlutils.ds.//DocumentNode)) to get the tree as pretty string (i.e. intended etc):
 
-```
-#!java
+### Printing 
+The class [DocumentTools](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools/DocumentTools.html) provides some static functions to print (parts of) document.
+Just pass the node rooting the tree to print as an argument (e.g. `document.getRoot ()` to print the whole `document`). Use [print/SubDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools/DocumentTools.html/#printSubDoc(de.unirostock.sems.xmlutils.ds./DocumentNode)) to print a tree and [print/PrettySubDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools/DocumentTools.html/#printPrettySubDoc(de.unirostock.sems.xmlutils.ds./DocumentNode)) to get the tree as pretty string (i.e. intended etc):
+
+```java
 String prettyDoc = DocumentTools.printPrettySubDoc (document.getRoot ());
 String justOneLineDoc = DocumentTools.printSubDoc (document.getRoot ());
 ```
 
 ### MathML conversion 
-The [DocumentTools](/src/main/java/de/unirostock/sems/xmlutils/tools//DocumentTools.java) ([JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools///DocumentTools.html)) contain a smart method to convert content MathML to presentation MathML: [transformMathML](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools///DocumentTools.html//#transformMathML(de.unirostock.sems.xmlutils.ds.//DocumentNode)). Just pass the !DocumentNode which roots the MathML tree and get a string containing the presentation MathML, e.g.:
+The [DocumentTools](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools/DocumentTools.html) contain a smart method to convert content MathML to presentation MathML:
+[transformMathML](http://jdoc.sems.uni-rostock.de/xmlutils/de/unirostock/sems/xmlutils/tools/DocumentTools.html/#transformMathML(de.unirostock.sems.xmlutils.ds./DocumentNode)). Just pass the `DocumentNode` which roots the MathML tree and get a string containing the presentation MathML, e.g.:
 
-```
-#!java
+```java
 String presentationMathML = DocumentTools.transformMathML (contentMathMLFile.getRoot ());
 ```
+
