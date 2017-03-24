@@ -24,7 +24,7 @@ Usage
 </dependency>
 ```
 
-* learn /HowTo use the library
+* learn [how to use the library](HowTo)
 
 Build 
 ------
@@ -33,7 +33,7 @@ Build
 
 Dev 
 ----
-* see the sources of this package: /src/main/java/de/unirostock/sems/xmlutils 
+* see the sources of this package: `/src/main/java/de/unirostock/sems/xmlutils`
 * see the [JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/)
 * clone the sources:
 
