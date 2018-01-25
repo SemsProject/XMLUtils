@@ -4,7 +4,7 @@ Build XML Utils
 When you've cloned the source code:
 
 ```sh
-git clone git@github.com:SemsProject/XMLUtils.git
+git clone https://github.com/SemsProject/XMLUtils
 ```
 
 There are two supported options to build this project:

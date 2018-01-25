@@ -14,15 +14,18 @@ Usage
 ------
 
 * [download a binary](http://bin.sems.uni-rostock.de/xmlutils/)
-* include XMLUtils via Maven: ([find latest version id](http://mvn.sems.uni-rostock.de/releases/de/unirostock/sems/xmlutils/), import the [SEMS Maven repository](https://sems.uni-rostock.de/2013/10/maven-repository/))
+* include XMLUtils via Maven:
 
 ```xml
 <dependency>
-    <groupId>de.unirostock.sems</groupId>
+    <groupId>de.uni-rostock.sbi</groupId>
     <artifactId>xmlutils</artifactId>
     <version>$VERSION</version>
 </dependency>
 ```
+
+([find latest version at Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22de.uni-rostock.sbi%22%20AND%20a%3A%22xmlutils%22))
+
 
 * learn [how to use the library](HowTo)
 
@@ -33,7 +36,7 @@ Build
 
 Dev 
 ----
-* see the sources of this package: `/src/main/java/de/unirostock/sems/xmlutils`
+* see the sources of this package: [`/src/main/java/de/unirostock/sems/xmlutils`](https://github.com/SemsProject/XMLUtils/tree/master/src/main/java/de/unirostock/sems/xmlutils)
 * see the [JavaDoc](http://jdoc.sems.uni-rostock.de/xmlutils/)
 * clone the sources:
 

@@ -4,7 +4,7 @@ How To Use XML Utils
 Read An XML Document 
 ---------------------
 
-read an XML document and create a [TreeDocument](/src/main/java/de/unirostock/sems/xmlutils/ds/TreeDocument.java):
+read an XML document and create a [TreeDocument](https://github.com/SemsProject/XMLUtils/tree/master/src/main/java/de/unirostock/sems/xmlutils/ds/TreeDocument.java):
 
 ```java
 // provide a file
